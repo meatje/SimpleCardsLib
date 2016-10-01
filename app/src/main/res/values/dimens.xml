@@ -1,0 +1,21 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Card -->
+    <dimen name="card_margin_horizontal">8dp</dimen>
+    <dimen name="card_margin_vertical">8dp</dimen>
+    <dimen name="card_padding">8dp</dimen>
+
+    <!-- Card Header Title  -->
+    <dimen name="card_title_top_padding">8dp</dimen>
+    <dimen name="card_title_bottom_padding">8dp</dimen>
+    <dimen name="card_title_text_size">24sp</dimen>
+    <dimen name="card_subtitle_text_size">14sp</dimen>
+    <dimen name="card_title_overflow_padding">32dp</dimen>
+
+    <!-- Card Header Overflow Button -->
+    <dimen name="card_overflow_padding">8dp</dimen>
+
+</resources>
