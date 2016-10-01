@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CardsLibrary</string>
+
+    <string name="overflow_button_content_description">Overflow button with additional options</string>
+</resources>
