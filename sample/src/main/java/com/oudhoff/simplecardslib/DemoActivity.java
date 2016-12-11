@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.oudhoff.cardslibrary.Card;
+import com.oudhoff.cardslibrary.CardAdapter;
 import com.oudhoff.cardslibrary.callbacks.CardClickListener;
 import com.oudhoff.cardslibrary.callbacks.CardHeaderMenuClickListener;
 
@@ -30,7 +31,7 @@ public class DemoActivity extends AppCompatActivity implements CardClickListener
             cards.add(card);
         }
 
-        DemoAdapter adapter = new DemoAdapter(cards, this);
+        CardAdapter adapter = new CardAdapter(cards, this);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
