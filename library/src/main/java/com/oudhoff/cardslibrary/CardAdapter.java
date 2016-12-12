@@ -16,11 +16,16 @@ public class CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private LayoutInflater inflater;
 
+    public CardAdapter(Context context) {
+        this.cards = new ArrayList<>();
+        this.context = context;
+        this.inflater = LayoutInflater.from(context);
+    }
+
     public CardAdapter(List<Card> cards, Context context) {
         this.cards = cards;
         this.context = context;
-
-        inflater = LayoutInflater.from(context);
+        this.inflater = LayoutInflater.from(context);
     }
 
     public void add(Card newItem) {
