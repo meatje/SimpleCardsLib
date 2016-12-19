@@ -1,5 +1,6 @@
 package com.oudhoff.simplecardslib;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.view.View;
@@ -10,8 +11,8 @@ import com.oudhoff.cardslibrary.Card;
 
 public class DemoCard extends Card<String> {
 
-    public DemoCard(Context context, String data, @LayoutRes int layoutRes) {
-        super(context, data, layoutRes);
+    public DemoCard(Activity activity, String data, @LayoutRes int layoutRes) {
+        super(activity, data, layoutRes);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.oudhoff.cardslibrary;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.MenuRes;
@@ -16,21 +17,21 @@ public abstract class Card<T> {
     private CardHeader cardHeader;
 
     private View inflatedLayout;
+    private View headerLayout;
     private LayoutInflater inflater;
 
     private CardClickListener cardClickListener;
     private CardLongClickListener cardLongClickListener;
 
-
     private T data;
 
     public abstract void setupLayout(View inflatedLayout);
 
-    public Card(Context context, T data, @LayoutRes int layoutRes) {
-        this.context = context;
+    public Card(Activity activity, T data, @LayoutRes final int layoutRes) {
+        this.context = activity;
         this.data = data;
+        this.inflater = LayoutInflater.from(getContext());
 
-        inflater = LayoutInflater.from(getContext());
         inflatedLayout = inflater.inflate(layoutRes, null, false);
         setupLayout(inflatedLayout);
     }
@@ -43,13 +44,14 @@ public abstract class Card<T> {
         return cardHeader;
     }
 
-    public void setCardHeader(String title, @MenuRes int menuRes, CardHeaderMenuClickListener cardHeaderMenuClickListener) {
+    public void setCardHeader(final String title, @MenuRes final int menuRes, final CardHeaderMenuClickListener cardHeaderMenuClickListener) {
         CardHeader cardHeader = (CardHeader) inflater.inflate(R.layout.view_base_card_header, null, false);
         cardHeader.setTitle(title);
-        cardHeader.setCard(this);
+        cardHeader.setCard(Card.this);
         cardHeader.setPopupMenu(menuRes, cardHeaderMenuClickListener);
 
-        this.cardHeader = cardHeader;
+        Card.this.cardHeader = cardHeader;
+
     }
 
     public T getData() {
