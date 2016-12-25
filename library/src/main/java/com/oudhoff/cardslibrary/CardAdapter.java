@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class  CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Card> cards = new ArrayList<>();
-    private Context context;
-    private LayoutInflater inflater;
+    protected List<Card> cards;
+    protected Context context;
+    protected LayoutInflater inflater;
 
     public CardAdapter(Context context) {
         this.cards = new ArrayList<>();
@@ -55,6 +55,10 @@ public class CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public Card getItem(int position) {
         return cards.get(position);
+    }
+
+    public List<Card> getCards(){
+        return cards;
     }
 
     @Override
