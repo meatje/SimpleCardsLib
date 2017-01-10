@@ -6,6 +6,7 @@ import android.support.annotation.StringRes;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.oudhoff.cardslibrary.callbacks.CardHeaderMenuClickListener;
+import com.oudhoff.cardslibrary.callbacks.OnPrepareCardHeaderMenuCallback;
 
 
 public class CardHeader extends RelativeLayout implements OnClickListener {
@@ -23,7 +25,8 @@ public class CardHeader extends RelativeLayout implements OnClickListener {
 
     private Card card;
     private String title;
-    private CardHeaderMenuClickListener cardHeaderMenuClickListener;
+//    private CardHeaderMenuClickListener cardHeaderMenuClickListener;
+//    private CardHeaderMenuClickListener onPopupMenuPrepareCallback;
 
     private PopupMenu overflowMenu;
 
@@ -58,12 +61,13 @@ public class CardHeader extends RelativeLayout implements OnClickListener {
         return title;
     }
 
-    public void setPopupMenu(@MenuRes int menuRes, final CardHeaderMenuClickListener cardHeaderMenuClickListener) {
-        this.cardHeaderMenuClickListener = cardHeaderMenuClickListener;
-
+    public void setPopupMenu(@MenuRes int menuRes, final CardHeaderMenuClickListener cardHeaderMenuClickListener, OnPrepareCardHeaderMenuCallback onPrepareCardHeaderMenuCallback) {
         //Create the pop up menu;
-        overflowMenu = new PopupMenu(getContext(), overflowButton);
+        overflowMenu = new PopupMenu(getContext(), overflowButton, Gravity.END);
         overflowMenu.inflate(menuRes);
+        if(onPrepareCardHeaderMenuCallback != null){
+            onPrepareCardHeaderMenuCallback.onPrepareCardHeaderMenu(card, overflowMenu.getMenu());
+        }
         overflowMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

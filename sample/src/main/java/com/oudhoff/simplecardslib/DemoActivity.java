@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -12,18 +12,12 @@ import com.oudhoff.cardslibrary.Card;
 import com.oudhoff.cardslibrary.CardAdapter;
 import com.oudhoff.cardslibrary.callbacks.CardClickListener;
 import com.oudhoff.cardslibrary.callbacks.CardHeaderMenuClickListener;
+import com.oudhoff.cardslibrary.callbacks.OnPrepareCardHeaderMenuCallback;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
-
-public class DemoActivity extends AppCompatActivity implements CardClickListener, CardHeaderMenuClickListener {
+public class DemoActivity extends AppCompatActivity implements CardClickListener, CardHeaderMenuClickListener, OnPrepareCardHeaderMenuCallback {
 
     private CardAdapter cardAdapter;
 
@@ -36,7 +30,7 @@ public class DemoActivity extends AppCompatActivity implements CardClickListener
 
         for (int i = 1; i <= 25; i++) {
             DemoCard card = new DemoCard(this, "Test " + i, R.layout.demo_card);
-            card.setCardHeader("Title " + i, R.menu.demo_card_menu, this);
+            card.setCardHeader("Title " + i, R.menu.demo_card_menu, this, this);
             card.setCardClickListener(this);
             cards.add(card);
         }
@@ -46,6 +40,13 @@ public class DemoActivity extends AppCompatActivity implements CardClickListener
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(cardAdapter);
+    }
+
+    @Override
+    public boolean onPrepareCardHeaderMenu(Card card, Menu menu) {
+        MenuItem item = menu.findItem(R.id.testMenuItem);
+//        item.setEnabled(false);
+        return true;
     }
 
     @Override

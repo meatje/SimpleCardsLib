@@ -10,6 +10,7 @@ import android.view.View;
 import com.oudhoff.cardslibrary.callbacks.CardClickListener;
 import com.oudhoff.cardslibrary.callbacks.CardHeaderMenuClickListener;
 import com.oudhoff.cardslibrary.callbacks.CardLongClickListener;
+import com.oudhoff.cardslibrary.callbacks.OnPrepareCardHeaderMenuCallback;
 
 
 public abstract class Card<T> {
@@ -45,13 +46,16 @@ public abstract class Card<T> {
     }
 
     public void setCardHeader(final String title, @MenuRes final int menuRes, final CardHeaderMenuClickListener cardHeaderMenuClickListener) {
+        setCardHeader(title, menuRes, cardHeaderMenuClickListener, null);
+    }
+
+    public void setCardHeader(final String title, @MenuRes final int menuRes, final CardHeaderMenuClickListener cardHeaderMenuClickListener, final OnPrepareCardHeaderMenuCallback onPrepareCardHeaderMenuCallback) {
         CardHeader cardHeader = (CardHeader) inflater.inflate(R.layout.view_base_card_header, null, false);
         cardHeader.setTitle(title);
         cardHeader.setCard(Card.this);
-        cardHeader.setPopupMenu(menuRes, cardHeaderMenuClickListener);
+        cardHeader.setPopupMenu(menuRes, cardHeaderMenuClickListener, onPrepareCardHeaderMenuCallback);
 
         Card.this.cardHeader = cardHeader;
-
     }
 
     public T getData() {
