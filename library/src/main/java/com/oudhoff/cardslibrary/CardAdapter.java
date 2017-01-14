@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class  CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     protected List<Card> cards;
     protected Context context;
@@ -57,7 +57,11 @@ public class  CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return cards.get(position);
     }
 
-    public List<Card> getCards(){
+    public int getPositionOf(Card card) {
+        return cards.indexOf(card);
+    }
+
+    public List<Card> getCards() {
         return cards;
     }
 
